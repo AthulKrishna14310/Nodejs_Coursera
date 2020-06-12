@@ -5,13 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
-
+var config = require('./config');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
-
+const url = 'mongodb://localhost:27017/conFusion';
 var passport = require('passport');
 var authenticate = require('./authenticate');
 
@@ -68,7 +68,7 @@ app.use('/leaders',leaderRouter);
 
 const mongoose = require('mongoose');
 const Dishes = require('./models/dishes');
-const url = 'mongodb://localhost:27017/conFusion';
+
 const connect = mongoose.connect(url);
 connect.then((db) => {
     console.log("Connected correctly to server");
